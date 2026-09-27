@@ -11,11 +11,39 @@ export function Wordmark({ className }: { className?: string }) {
   );
 }
 
+export function VaultBadge({ className }: { className?: string }) {
+  return (
+    <img
+      src="/worldvault-mark.svg"
+      alt=""
+      aria-hidden="true"
+      className={cn("shrink-0", className)}
+    />
+  );
+}
+
+export function LogoLockup({
+  className,
+  badgeClassName,
+}: {
+  className?: string;
+  badgeClassName?: string;
+}) {
+  return (
+    <span className={cn("inline-flex items-center gap-2.5", className)}>
+      <VaultBadge className={cn("h-8 w-8", badgeClassName)} />
+      <Wordmark />
+    </span>
+  );
+}
+
 const links = [
   { href: "#how-it-works", label: "How it works" },
   { href: "#features", label: "Features" },
   { href: "#screenshots", label: "Screens" },
   { href: "#privacy", label: "Privacy" },
+  { href: "#about", label: "About" },
+  { href: "#support", label: "Support" },
 ];
 
 export function SiteHeader() {
@@ -37,12 +65,17 @@ export function SiteHeader() {
           : "border-b border-transparent",
       )}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-        <a href="#top" className="text-lg" aria-label="WorldVault home">
-          <Wordmark />
+      <div
+        className={cn(
+          "mx-auto flex max-w-6xl items-center justify-between px-5 transition-[height] duration-300",
+          stuck ? "h-14" : "h-16",
+        )}
+      >
+        <a href="#top" className="text-sm sm:text-base" aria-label="WorldVault home">
+          <LogoLockup badgeClassName="h-8 w-8" />
         </a>
         <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex items-center gap-7 text-sm text-muted-foreground">
+          <ul className="flex items-center gap-4 text-xs text-muted-foreground lg:gap-6 lg:text-sm">
             {links.map((l) => (
               <li key={l.href}>
                 <a

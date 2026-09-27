@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Brand assets use the reusable vault-badge SVG plus generated fixed-size PNG exports, keeping UI lockups and platform icons visually consistent.

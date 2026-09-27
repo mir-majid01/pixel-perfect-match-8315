@@ -16,11 +16,14 @@ import {
   Send,
   RotateCcw,
   MousePointerClick,
+  Flame,
+  Database,
+  ExternalLink,
 } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { HeroBackdrop } from "@/components/site/HeroBackdrop";
 import { Creature } from "@/components/site/Creature";
-import { SiteHeader, Wordmark } from "@/components/site/SiteHeader";
+import { LogoLockup, SiteHeader } from "@/components/site/SiteHeader";
 import {
   PhoneFrame,
   ScreenHome,
@@ -48,7 +51,22 @@ export const Route = createFileRoute("/")({
           "Local .mcworld exports, scheduled backups, and cloud backups that stay in your own Google Drive. Free Android app.",
       },
       { property: "og:type", content: "website" },
+      {
+        property: "og:url",
+        content: "https://pixel-perfect-match-8315.lovable.app/",
+      },
+      {
+        property: "og:image",
+        content: "https://pixel-perfect-match-8315.lovable.app/worldvault-social.png",
+      },
       { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:image",
+        content: "https://pixel-perfect-match-8315.lovable.app/worldvault-social.png",
+      },
+    ],
+    links: [
+      { rel: "canonical", href: "https://pixel-perfect-match-8315.lovable.app/" },
     ],
   }),
   component: Landing,
@@ -439,6 +457,97 @@ function Landing() {
           </div>
         </section>
 
+        {/* ABOUT */}
+        <section id="about" className="border-b border-border py-24">
+          <div className="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-[1.15fr_0.85fr] md:items-center">
+            <div>
+              <Reveal>
+                <SectionLabel>About the developer</SectionLabel>
+              </Reveal>
+              <Reveal delay={60}>
+                <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight">
+                  Built by one Bedrock player who wanted backups to feel dependable.
+                </h2>
+              </Reveal>
+              <Reveal delay={120}>
+                <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                  WorldVault is built and maintained by a solo developer who plays
+                  Bedrock and got tired of losing worlds to corrupted saves and
+                  device resets. It is intentionally focused: make a complete copy,
+                  show exactly where it goes, and make restoring it straightforward.
+                </p>
+              </Reveal>
+            </div>
+            <Reveal delay={140}>
+              <div className="border-l-2 border-primary bg-surface-2 p-6">
+                <p className="font-display text-xs uppercase text-primary">Built with</p>
+                <ul className="mt-5 space-y-5">
+                  <li className="flex gap-4">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center bg-secondary text-primary">
+                      <Flame className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <div>
+                      <h3 className="text-sm font-semibold">Firebase</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                        Keeps the small records needed to identify backup versions — not the contents of your worlds.
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center bg-secondary text-primary">
+                      <Database className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <div>
+                      <h3 className="text-sm font-semibold">Google Drive API</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                        Sends cloud backups directly to a WorldVault folder in the Google Drive account you control.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* SUPPORT */}
+        <section id="support" className="pixel-grid border-b border-border py-24">
+          <div className="mx-auto max-w-6xl px-5">
+            <Reveal>
+              <SectionLabel>Contact & support</SectionLabel>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight">Talk directly to the developer.</h2>
+              <p className="mt-4 text-sm text-muted-foreground">
+                Questions, bug reports, or feature requests — reach out directly.
+              </p>
+            </Reveal>
+            <div className="mt-9 grid gap-4 sm:grid-cols-3">
+              {[
+                { label: "Telegram", detail: "@Mirmajid01", href: "https://t.me/Mirmajid01", icon: Send, external: true },
+                { label: "WhatsApp", detail: "+91 78899 41591", href: "https://wa.me/917889941591", icon: MessageCircle, external: true },
+                { label: "Email", detail: "WorldVault@gmail.com", href: "mailto:WorldVault@gmail.com", icon: Mail, external: false },
+              ].map((contact, i) => (
+                <Reveal key={contact.label} delay={i * 90}>
+                  <a
+                    href={contact.href}
+                    target={contact.external ? "_blank" : undefined}
+                    rel={contact.external ? "noreferrer" : undefined}
+                    className="group flex h-full items-center gap-4 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/50 hover:bg-secondary"
+                  >
+                    <span className="grid h-11 w-11 shrink-0 place-items-center bg-secondary text-primary group-hover:bg-primary group-hover:text-primary-foreground">
+                      <contact.icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-sm font-semibold">{contact.label}</span>
+                      <span className="block break-all text-xs text-muted-foreground">{contact.detail}</span>
+                    </span>
+                    <ExternalLink className="ml-auto h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+                  </a>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* DOWNLOAD */}
         <section id="download" className="relative overflow-hidden py-28">
           <div className="relative mx-auto max-w-3xl px-5 text-center">
@@ -480,10 +589,9 @@ function Landing() {
         <div className="mx-auto max-w-6xl px-5 py-14">
           <div className="grid gap-10 md:grid-cols-3">
             <div>
-              <Wordmark className="text-lg" />
+              <LogoLockup className="text-lg" badgeClassName="h-11 w-11" />
               <p className="mt-3 max-w-xs text-sm text-muted-foreground">
-                Backup · Save · Never Lose. A small Android tool for keeping
-                Minecraft Bedrock worlds safe.
+                Backup · Save · Never Lose
               </p>
             </div>
             <nav aria-label="Footer">
@@ -500,7 +608,7 @@ function Landing() {
                   </a>
                 </li>
                 <li>
-                  <a href="#privacy" className="hover:text-foreground">
+                  <a href="/privacy" className="hover:text-foreground">
                     Privacy policy
                   </a>
                 </li>
@@ -511,7 +619,7 @@ function Landing() {
               <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
                 <li className="flex items-center gap-2">
                   <Send className="h-4 w-4 text-primary" aria-hidden="true" />
-                  <a href="#download" className="hover:text-foreground">
+                   <a href="https://t.me/Mirmajid01" target="_blank" rel="noreferrer" className="hover:text-foreground">
                     Telegram
                   </a>
                 </li>
@@ -520,24 +628,27 @@ function Landing() {
                     className="h-4 w-4 text-primary"
                     aria-hidden="true"
                   />
-                  <a href="#download" className="hover:text-foreground">
+                   <a href="https://wa.me/917889941591" target="_blank" rel="noreferrer" className="hover:text-foreground">
                     WhatsApp
                   </a>
                 </li>
                 <li className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-primary" aria-hidden="true" />
-                  <a href="#download" className="hover:text-foreground">
+                   <a href="mailto:WorldVault@gmail.com" className="hover:text-foreground">
                     Email support
                   </a>
                 </li>
               </ul>
             </div>
           </div>
-          <p className="mt-12 border-t border-border pt-6 text-xs leading-relaxed text-muted-foreground">
-            WorldVault is an independent, fan-made tool. It is not affiliated
-            with, endorsed by, or associated with Mojang Studios or Microsoft.
-            Minecraft is a trademark of Mojang Studios.
-          </p>
+          <div className="mt-12 border-t border-border pt-6 text-xs leading-relaxed text-muted-foreground">
+            <p>
+              WorldVault is an independent app and is not affiliated with,
+              endorsed by, or sponsored by Mojang Studios or Microsoft.
+              Minecraft is a trademark of Mojang Synergies AB.
+            </p>
+            <p className="mt-3">© {new Date().getFullYear()} WorldVault. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </div>
