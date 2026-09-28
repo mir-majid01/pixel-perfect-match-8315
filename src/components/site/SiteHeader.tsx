@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
 import { cn } from "@/lib/utils";
+import worldVaultIcon from "@/assets/WorldVault_icon.png.asset.json";
 
 export function Wordmark({ className }: { className?: string }) {
   return (
@@ -14,10 +15,10 @@ export function Wordmark({ className }: { className?: string }) {
 export function VaultBadge({ className }: { className?: string }) {
   return (
     <img
-      src="/worldvault-mark.svg"
+      src={worldVaultIcon.url}
       alt=""
       aria-hidden="true"
-      className={cn("shrink-0", className)}
+      className={cn("shrink-0 rounded-[22%]", className)}
     />
   );
 }
