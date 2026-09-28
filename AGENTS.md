@@ -9,4 +9,4 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Brand assets use the uploaded WorldVault chest icon through a CDN pointer plus generated fixed-size PNG exports, keeping UI lockups and platform icons visually consistent.
+- Brand UI uses `/public/worldvault-mark.png` through the root-relative `/worldvault-mark.png` URL so Vercel includes and serves it consistently; favicon and platform exports remain in `/public`.
