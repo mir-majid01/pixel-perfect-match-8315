@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
-  <title id="title">WorldVault vault badge</title>
-  <path fill="#1f2c26" d="M12 4h40l8 8v40l-8 8H12l-8-8V12z"/>
-  <circle cx="32" cy="32" r="16" fill="none" stroke="#4de669" stroke-width="5"/>
-  <path fill="#4de669" d="M29 10h6v8h-6zm0 36h6v8h-6zM10 29h8v6h-8zm36 0h8v6h-8z"/>
-  <circle cx="32" cy="31" r="5" fill="#4de669"/>
-  <path fill="#4de669" d="M29 31h6v13h-6z"/>
-</svg>
