@@ -212,7 +212,8 @@ function Landing() {
               <Reveal delay={240}>
                 <div className="mt-8 flex flex-wrap items-center gap-4">
                   <a
-                    href="#download"
+                    href="/worldvault.apk"
+                    download="WorldVault.apk"
                     className="press inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-glow hover:bg-primary/90"
                   >
                     <Download className="h-4 w-4" aria-hidden="true" />
@@ -568,7 +569,8 @@ function Landing() {
             </Reveal>
             <Reveal delay={200}>
               <a
-                href="#download"
+                href="/worldvault.apk"
+                download="WorldVault.apk"
                 className="press mt-8 inline-flex items-center gap-2 rounded-xl bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground shadow-glow hover:bg-primary/90"
               >
                 <Download className="h-4 w-4" aria-hidden="true" />
@@ -578,7 +580,7 @@ function Landing() {
             <Reveal delay={260}>
               <p className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
                 <Smartphone className="h-3.5 w-3.5" aria-hidden="true" />
-                Android 8.0 and newer · APK, ~18 MB · Free, no ads
+                Android 8.0 and newer · APK, ~30 MB · Free, no ads
               </p>
             </Reveal>
           </div>
