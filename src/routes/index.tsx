@@ -525,7 +525,7 @@ function Landing() {
               {[
                 { label: "Telegram", detail: "@Mirmajid01", href: "https://t.me/Mirmajid01", icon: Send, external: true },
                 { label: "WhatsApp", detail: "+91 78899 41591", href: "https://wa.me/917889941591", icon: MessageCircle, external: true },
-                { label: "Email", detail: "WorldVault@gmail.com", href: "mailto:WorldVault@gmail.com", icon: Mail, external: false },
+                { label: "Email", detail: "WworldVault@gmail.com", href: "mailto:WworldVault@gmail.com", icon: Mail, external: false },
               ].map((contact, i) => (
                 <Reveal key={contact.label} delay={i * 90}>
                   <a
@@ -636,7 +636,7 @@ function Landing() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-primary" aria-hidden="true" />
-                   <a href="mailto:WorldVault@gmail.com" className="hover:text-foreground">
+                   <a href="mailto:WworldVault@gmail.com" className="hover:text-foreground">
                     Email support
                   </a>
                 </li>
