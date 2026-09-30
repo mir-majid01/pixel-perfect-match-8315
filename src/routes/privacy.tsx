@@ -76,8 +76,8 @@ function PrivacyPolicy() {
         </div>
         <section className="mt-10 border-l-2 border-primary bg-surface-2 p-6">
           <h2 className="text-base font-semibold">Privacy questions or deletion requests</h2>
-          <a href="mailto:WorldVault@gmail.com" className="mt-3 inline-flex items-center gap-2 text-sm text-primary hover:underline">
-            <Mail className="h-4 w-4" aria-hidden="true" /> WorldVault@gmail.com
+          <a href="mailto:WworldVault@gmail.com" className="mt-3 inline-flex items-center gap-2 text-sm text-primary hover:underline">
+            <Mail className="h-4 w-4" aria-hidden="true" /> WworldVault@gmail.com
           </a>
         </section>
       </article>
