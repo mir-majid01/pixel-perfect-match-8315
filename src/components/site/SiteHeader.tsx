@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { Download } from "lucide-react";
+import { Download, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const WORLDVAULT_LOGO_PATH = "/worldvault-mark.png";
 
 export function Wordmark({ className }: { className?: string }) {
   return (
-    <span className={cn("font-display tracking-wide", className)}>
+    <span className={cn("font-display", className)}>
       <span className="text-foreground">WORLD</span>
       <span className="text-primary">VAULT</span>
     </span>
@@ -50,6 +51,7 @@ const links = [
 
 export function SiteHeader() {
   const [stuck, setStuck] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const on = () => setStuck(window.scrollY > 80);
@@ -64,7 +66,7 @@ export function SiteHeader() {
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         stuck
           ? "border-b border-border bg-background/85 backdrop-blur-md"
-          : "border-b border-transparent",
+          : "border-b border-foreground/10 bg-background/25 backdrop-blur-sm",
       )}
     >
       <div
@@ -90,14 +92,15 @@ export function SiteHeader() {
             ))}
           </ul>
         </nav>
-        <a
-          href="#download"
-          className="press inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
-        >
+        <div className="flex items-center gap-2">
+        <Button asChild className="press text-xs font-semibold"><a href="#download">
           <Download className="h-4 w-4" aria-hidden="true" />
           <span className="hidden sm:inline">Download</span>
-        </a>
+        </a></Button>
+        <Button variant="ghost" size="icon" className="md:hidden" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
+        </div>
       </div>
+      {open && <nav id="mobile-navigation" aria-label="Mobile navigation" className="border-b border-border bg-background px-5 pb-5 md:hidden"><ul className="grid grid-cols-2 gap-1">{links.map(link => <li key={link.href}><Button asChild variant="ghost" className="w-full justify-start text-sm"><a href={link.href} onClick={()=>setOpen(false)}>{link.label}</a></Button></li>)}</ul></nav>}
     </header>
   );
 }

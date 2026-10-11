@@ -10,3 +10,5 @@
 <!-- LOVABLE:END -->
 
 - Brand UI uses `/public/worldvault-mark.png` through the root-relative `/worldvault-mark.png` URL so Vercel includes and serves it consistently; favicon and platform exports remain in `/public`.
+- Keep the interactive app-screen showcase in a dedicated browser-safe site component; isolate preview state from the page and label illustrative screens honestly.
+- Import scenic page imagery from project assets and define overlays and motion roles in global semantic tokens so production asset bundling and theme consistency are preserved.
