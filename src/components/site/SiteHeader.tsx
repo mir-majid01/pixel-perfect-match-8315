@@ -190,7 +190,7 @@ export function SiteHeader() {
             </div>
 
             <ul className="grid grid-cols-1 gap-1 p-2 sm:grid-cols-2">
-              {links.map(({ href, label, detail, Icon }, index) => (
+              {links.map(({ href, label, detail, Icon }) => (
                 <li key={href}>
                   <a
                     href={href}
