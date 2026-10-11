@@ -492,15 +492,6 @@ function Landing() {
                   </a>
                 </li>
                 <li className="flex items-center gap-2">
-                  <MessageCircle
-                    className="h-4 w-4 text-primary"
-                    aria-hidden="true"
-                  />
-                   <a href="https://wa.me/917889941591" target="_blank" rel="noreferrer" className="hover:text-foreground">
-                    WhatsApp
-                  </a>
-                </li>
-                <li className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-primary" aria-hidden="true" />
                    <a href="mailto:WworldVault@gmail.com" className="hover:text-foreground">
                     Email support
