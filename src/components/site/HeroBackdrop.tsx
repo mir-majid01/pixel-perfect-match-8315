@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import landscape from "@/assets/worldvault-landscape.jpg";
 
 /**
  * Ambient hero backdrop: celestial arc (sun/moon), drifting blocky clouds,
@@ -57,13 +58,12 @@ export function HeroBackdrop({ offset = 0 }: { offset?: number }) {
       className="pointer-events-none absolute inset-0 overflow-hidden"
       aria-hidden="true"
     >
-      {/* sky wash */}
-      <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,var(--sky-day)_0%,transparent_55%)] opacity-40" />
-      <div className="absolute inset-0 bg-[radial-gradient(90%_60%_at_80%_10%,var(--sky-night)_0%,transparent_60%)] opacity-60" />
+      <img src={landscape} alt="" width={1920} height={1024} fetchPriority="high" className="hero-landscape absolute inset-0 h-full w-full object-cover" style={{ transform: `translateY(${Math.min(p * 0.12, 90)}px) scale(1.14)` }} />
+      <div className="hero-image-shade absolute inset-0" />
 
       {/* celestial arc: sun and moon on a slow rotating axis */}
       <div
-        className="absolute left-1/2 top-[58%] h-[130vw] w-[130vw] -translate-x-1/2 -translate-y-1/2 md:h-[90vw] md:w-[90vw]"
+        className="absolute left-1/2 top-[58%] hidden h-[130vw] w-[130vw] -translate-x-1/2 -translate-y-1/2 md:h-[90vw] md:w-[90vw]"
         style={{ transform: `translate(-50%, calc(-50% + ${p * 0.15}px))` }}
       >
         <div
@@ -88,7 +88,7 @@ export function HeroBackdrop({ offset = 0 }: { offset?: number }) {
 
       {/* far mountains */}
       <svg
-        className="absolute inset-x-0 bottom-0 w-full"
+        className="absolute inset-x-0 bottom-0 hidden w-full"
         style={{ transform: `translateY(${p * 0.06}px)` }}
         viewBox="0 0 1200 220"
         preserveAspectRatio="none"
@@ -102,7 +102,7 @@ export function HeroBackdrop({ offset = 0 }: { offset?: number }) {
       </svg>
       {/* near mountains */}
       <svg
-        className="absolute inset-x-0 bottom-0 w-full"
+        className="absolute inset-x-0 bottom-0 hidden w-full"
         style={{ transform: `translateY(${p * 0.02}px)` }}
         viewBox="0 0 1200 160"
         preserveAspectRatio="none"
@@ -119,7 +119,7 @@ export function HeroBackdrop({ offset = 0 }: { offset?: number }) {
         />
       </svg>
 
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(180deg,transparent,var(--background))]" />
+      <div className="hero-bottom-shade absolute inset-x-0 bottom-0 h-28" />
     </div>
   );
 }
