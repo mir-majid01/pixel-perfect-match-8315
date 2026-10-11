@@ -19,18 +19,23 @@ import {
   Flame,
   Database,
   ExternalLink,
+  ArrowUpRight,
+  ArrowRight,
+  Check,
+  ChevronDown,
+  TriangleAlert,
+  FolderOpen,
+  Heart,
 } from "lucide-react";
+import landscape from "@/assets/worldvault-landscape.jpg";
+import { Button } from "@/components/ui/button";
+import { AppShowcase } from "@/components/site/AppShowcase";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Reveal } from "@/components/site/Reveal";
 import { HeroBackdrop } from "@/components/site/HeroBackdrop";
 import { Creature } from "@/components/site/Creature";
 import { LogoLockup, SiteHeader } from "@/components/site/SiteHeader";
-import {
-  PhoneFrame,
-  ScreenHome,
-  ScreenWorld,
-  ScreenProgress,
-  ScreenSettings,
-} from "@/components/site/PhoneFrame";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -92,7 +97,7 @@ function useParallax() {
 
 function SectionLabel({ children }: { children: string }) {
   return (
-    <p className="font-display text-xs uppercase tracking-[0.25em] text-primary">
+    <p className="section-label text-xs font-semibold uppercase text-primary">
       {children}
     </p>
   );
@@ -154,29 +159,6 @@ const features = [
   },
 ];
 
-const shots = [
-  {
-    screen: <ScreenHome />,
-    label: "WorldVault home dashboard listing detected worlds",
-    caption: "Home — every world found on your device, with backup status.",
-  },
-  {
-    screen: <ScreenWorld />,
-    label: "World detail screen with backup options",
-    caption: "World detail — pick local, cloud, addons, and screenshots.",
-  },
-  {
-    screen: <ScreenProgress />,
-    label: "Backup progress screen with transfer speed",
-    caption: "Backup progress — live speed and time remaining.",
-  },
-  {
-    screen: <ScreenSettings />,
-    label: "Settings screen with automatic backup schedule",
-    caption: "Settings — schedules, Drive account, and version limits.",
-  },
-];
-
 function Landing() {
   const y = useParallax();
 
@@ -186,208 +168,85 @@ function Landing() {
 
       <main>
         {/* HERO */}
-        <section className="relative overflow-hidden pb-20 pt-28 md:pb-28 md:pt-36">
+        <section className="world-hero relative isolate overflow-hidden">
           <HeroBackdrop offset={y} />
-          <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-2">
-            <div>
-              <Reveal>
-                <p className="font-display text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                  Backup · Save · Never Lose
-                </p>
-              </Reveal>
-              <Reveal delay={80}>
-                <h1 className="mt-5 text-4xl font-bold leading-[1.1] tracking-tight md:text-5xl">
-                  A corrupted save shouldn&apos;t cost you{" "}
-                  <span className="text-primary">300 hours</span> of building.
-                </h1>
-              </Reveal>
-              <Reveal delay={160}>
-                <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
-                  WorldVault copies your Minecraft Bedrock worlds, addons and
-                  screenshots off your phone — to local files or your own Google
-                  Drive — so a crash, a factory reset, or a mis-tapped delete is
-                  an inconvenience, not a loss.
-                </p>
-              </Reveal>
-              <Reveal delay={240}>
-                <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <a
-                    href="/worldvault.apk"
-                    download="WorldVault.apk"
-                    className="press inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-glow hover:bg-primary/90"
-                  >
-                    <Download className="h-4 w-4" aria-hidden="true" />
-                    Download for Android
-                  </a>
-                  <a
-                    href="#how-it-works"
-                    className="press inline-flex items-center gap-2 rounded-xl border border-border bg-card px-6 py-3.5 text-sm font-semibold text-foreground hover:bg-secondary"
-                  >
-                    See how it works
-                  </a>
-                </div>
-              </Reveal>
-              <Reveal delay={320}>
-                <p className="mt-4 text-xs text-muted-foreground">
-                  Free · Android 8.0+ · No account required for local backups
-                </p>
-              </Reveal>
-            </div>
-
-            <Reveal delay={200} className="flex justify-center md:justify-end">
-              <div className="relative">
-                <PhoneFrame label="WorldVault dashboard showing backed up Minecraft Bedrock worlds">
-                  <ScreenHome />
-                </PhoneFrame>
-                <Creature
-                  variant="sprout"
-                  className="absolute -left-8 bottom-6 hidden sm:block"
-                />
-              </div>
+          <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-36 text-center md:pt-40">
+            <Reveal>
+              <p className="hero-eyebrow inline-flex items-center gap-2 border border-foreground/20 bg-background/40 px-3 py-2 text-xs text-foreground backdrop-blur-sm">
+                <span className="h-1.5 w-1.5 bg-primary" /> FOR THE WORLDS YOU CAN’T REPLACE
+              </p>
+              <h1 className="mt-6 text-5xl font-semibold leading-none md:text-7xl">WorldVault<span className="text-primary">.</span></h1>
+              <p className="mt-5 text-2xl font-medium leading-snug md:text-3xl">You built a world. <span className="text-primary">Keep it.</span></p>
+              <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-hero-muted md:text-base">
+                The first house. The impossible redstone build. That survival world you always come back to. Back up your Bedrock worlds — and keep every bit of them yours.
+              </p>
             </Reveal>
+            <Reveal delay={120}>
+              <div className="mt-8 flex flex-wrap justify-center gap-3">
+                <Button asChild size="lg" className="press h-12 px-6 font-semibold"><a href="/worldvault.apk" download="WorldVault.apk"><Download /> Download for Android <ArrowUpRight /></a></Button>
+                <Button asChild variant="outline" size="lg" className="h-12 border-foreground/25 bg-background/40 px-6 backdrop-blur-sm"><a href="#how-it-works">Take a closer look <ArrowRight /></a></Button>
+              </div>
+              <p className="mt-4 text-xs text-hero-muted">Free. No ads. No subscription. Just your worlds, safe.</p>
+            </Reveal>
+            <div className="mt-24 flex items-end justify-between text-left md:mt-28">
+              <span className="text-xs text-hero-muted"><span className="mb-1 block font-medium text-foreground">Every block tells a story.</span>Make sure yours has a backup.</span>
+              <a href="#how-it-works" aria-label="Explore WorldVault" className="scroll-cue flex h-10 w-10 items-center justify-center rounded-full border border-foreground/25 text-foreground"><ChevronDown className="h-4 w-4" /></a>
+            </div>
           </div>
         </section>
 
+        <div className="border-y border-border bg-surface-2">
+          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-y-5 px-5 py-6 text-xs text-muted-foreground md:grid-cols-4">
+            {[[ShieldCheck, "Your worlds. Your storage."], [Cloud, "Local + Google Drive"], [Package, "Worlds, packs & screenshots"], [Smartphone, "Made for Android"]].map(([Icon, text]) => {
+              const ItemIcon = Icon as typeof ShieldCheck;
+              return <div key={String(text)} className="flex items-center gap-2.5"><ItemIcon className="h-4 w-4 shrink-0 text-primary" /><span>{String(text)}</span></div>;
+            })}
+          </div>
+        </div>
+
         {/* PROBLEM */}
-        <section className="pixel-grid border-y border-border py-20">
+        <section className="py-20 md:py-24">
           <div className="mx-auto max-w-6xl px-5">
-            <Reveal>
-              <SectionLabel>The problem</SectionLabel>
-            </Reveal>
-            <Reveal delay={60}>
-              <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight">
-                Bedrock worlds live in one folder, on one device, with no undo.
-              </h2>
-            </Reveal>
-            <div className="mt-10 grid gap-5 sm:grid-cols-3">
-              {[
-                {
-                  stat: "One tap",
-                  body: "is all it takes to delete a world in-game. There is no recycle bin and no confirmation you can take back.",
-                },
-                {
-                  stat: "Corrupt",
-                  body: "is what a save becomes after a crash mid-chunk-write. The world still shows up — it just won't open.",
-                },
-                {
-                  stat: "New phone",
-                  body: "and your worlds stay behind. Bedrock's own sync doesn't cover local worlds, addons, or screenshots.",
-                },
-              ].map((c, i) => (
-                <Reveal key={c.stat} delay={i * 100}>
-                  <div className="h-full rounded-xl border border-border bg-card p-6">
-                    <p className="font-display text-xl text-primary">{c.stat}</p>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      {c.body}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
+            <div className="grid items-start gap-8 md:grid-cols-2 md:gap-16">
+              <Reveal><SectionLabel>01 / Why it matters</SectionLabel><h2 className="mt-4 text-3xl font-semibold leading-tight md:text-4xl">Hundreds of hours.<br />One fragile save file.</h2></Reveal>
+              <Reveal delay={100}><p className="pt-1 text-base leading-relaxed text-muted-foreground">A Bedrock world lives on one device. A crash, a reset, or an accidental delete can take everything with it. Your next backup should happen before your next “what if.”</p></Reveal>
+            </div>
+            <div className="mt-12 grid gap-8 border-y border-border py-8 md:grid-cols-3">
+              {[{icon: TriangleAlert, title: "The save that won’t open", body: "A crash during a save can corrupt the world you were playing just a moment ago."}, {icon: Smartphone, title: "The phone you leave behind", body: "A new device shouldn’t mean starting over. Keep a copy you can bring with you."}, {icon: RotateCcw, title: "The tap you can’t undo", body: "Deleted worlds don’t have a recycle bin. A saved version gives you a way back."}].map((item,i)=><Reveal key={item.title} delay={i*80}><div className="flex items-center gap-3"><item.icon className="h-5 w-5 text-muted-foreground" /><h3 className="text-sm font-semibold">{item.title}</h3></div><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p></Reveal>)}
             </div>
           </div>
         </section>
 
         {/* HOW IT WORKS */}
-        <section id="how-it-works" className="py-24">
+        <section id="how-it-works" className="border-y border-border bg-surface-2 py-20 md:py-24">
           <div className="mx-auto max-w-6xl px-5">
-            <Reveal>
-              <SectionLabel>How it works</SectionLabel>
-            </Reveal>
-            <Reveal delay={60}>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight">
-                Four steps, then it runs on its own.
-              </h2>
-            </Reveal>
-            <ol className="mt-10 grid gap-5 md:grid-cols-4">
-              {steps.map((s, i) => (
-                <Reveal as="li" key={s.title} delay={i * 110}>
-                  <div className="h-full rounded-xl border border-border bg-card p-6">
-                    <div className="flex items-center justify-between">
-                      <span className="grid h-10 w-10 place-items-center bg-secondary text-primary">
-                        <s.icon className="h-5 w-5" aria-hidden="true" />
-                      </span>
-                      <span className="font-display text-sm text-border">
-                        0{i + 1}
-                      </span>
-                    </div>
-                    <h3 className="mt-4 text-base font-semibold">{s.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {s.body}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
+            <Reveal><SectionLabel>02 / A little peace of mind</SectionLabel><h2 className="mt-4 text-3xl font-semibold md:text-4xl">Less worrying. More building.</h2><p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">A straightforward path from the world on your phone to a copy you can count on.</p></Reveal>
+            <ol className="mt-12 grid gap-8 md:grid-cols-4">
+              {steps.map((step,i)=><Reveal as="li" key={step.title} delay={i*100} className="workflow-step"><div className="mb-7 flex items-center gap-4"><span className="grid h-12 w-12 shrink-0 place-items-center border border-primary/30 bg-primary/5 text-primary"><step.icon className="h-5 w-5" /></span><span className="workflow-line h-px flex-1 bg-border" /></div><span className="text-xs text-primary">0{i+1}</span><h3 className="mt-2 text-base font-semibold">{step.title}</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.body}</p></Reveal>)}
             </ol>
           </div>
         </section>
 
         {/* FEATURES */}
-        <section
-          id="features"
-          className="pixel-grid border-y border-border py-24"
-        >
+        <section id="features" className="py-20 md:py-24">
           <div className="mx-auto max-w-6xl px-5">
-            <div className="flex items-end justify-between gap-6">
-              <div>
-                <Reveal>
-                  <SectionLabel>Features</SectionLabel>
-                </Reveal>
-                <Reveal delay={60}>
-                  <h2 className="mt-3 text-3xl font-bold tracking-tight">
-                    Everything a world needs to survive.
-                  </h2>
-                </Reveal>
+            <Reveal><SectionLabel>03 / More than a save file</SectionLabel><h2 className="mt-4 text-3xl font-semibold md:text-4xl">The whole world. Not just the blocks.</h2></Reveal>
+            <div className="mt-12 grid gap-5 lg:grid-cols-[1.1fr_1fr]">
+              <Reveal className="feature-world relative isolate min-h-[410px] overflow-hidden rounded-lg border border-border">
+                <img src={landscape} alt="An original block-built riverside world with a mountain cabin" width={1920} height={1024} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="feature-image-shade absolute inset-0" />
+                <div className="relative flex h-full min-h-[410px] flex-col justify-end p-7"><Package className="mb-4 h-6 w-6 text-primary" /><h3 className="text-2xl font-semibold">Bring the details with you.</h3><p className="mt-3 max-w-sm text-sm leading-relaxed text-hero-muted">Your behavior packs, resource packs, and screenshots are part of the story. Keep them alongside your world.</p><span className="mt-6 flex items-center gap-2 text-xs text-primary"><Check className="h-4 w-4" /> More than terrain. Everything that makes it yours.</span></div>
+              </Reveal>
+              <div className="grid grid-cols-1 gap-x-8 sm:grid-cols-2">
+                {features.filter(f=>f.title!=="Addons & resource packs").map((f,i)=><Reveal key={f.title} delay={(i%2)*90} className="feature-detail border-b border-border py-6 first:pt-0"><f.icon className="h-5 w-5 text-primary" /><h3 className="mt-4 text-sm font-semibold">{f.title}</h3><p className="mt-2 text-xs leading-relaxed text-muted-foreground">{f.body}</p></Reveal>)}
               </div>
-              <Creature
-                variant="glow"
-                delay={0.6}
-                className="hidden shrink-0 md:block"
-              />
-            </div>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {features.map((f, i) => (
-                <Reveal key={f.title} delay={(i % 3) * 100}>
-                  <div className="group h-full rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/40">
-                    <span className="grid h-10 w-10 place-items-center bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                      <f.icon className="h-5 w-5" aria-hidden="true" />
-                    </span>
-                    <h3 className="mt-4 text-base font-semibold">{f.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {f.body}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
             </div>
           </div>
         </section>
 
         {/* SCREENSHOTS */}
-        <section id="screenshots" className="py-24">
-          <div className="mx-auto max-w-6xl px-5">
-            <Reveal>
-              <SectionLabel>Inside the app</SectionLabel>
-            </Reveal>
-            <Reveal delay={60}>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight">
-                Four screens, no clutter.
-              </h2>
-            </Reveal>
-          </div>
-          <div className="mt-10 overflow-x-auto pb-4">
-            <ul className="mx-auto flex w-max gap-6 px-5 md:px-[max(1.25rem,calc((100vw-72rem)/2))]">
-              {shots.map((s, i) => (
-                <Reveal as="li" key={s.caption} delay={i * 90}>
-                  <figure className="w-[260px]">
-                    <PhoneFrame label={s.label}>{s.screen}</PhoneFrame>
-                    <figcaption className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                      {s.caption}
-                    </figcaption>
-                  </figure>
-                </Reveal>
-              ))}
-            </ul>
-          </div>
+        <section id="screenshots" className="border-y border-border bg-surface-2 py-20 md:py-24">
+          <div className="mx-auto max-w-6xl px-5"><AppShowcase /></div>
         </section>
 
         {/* PRIVACY */}
@@ -398,10 +257,10 @@ function Landing() {
           <div className="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-2">
             <div>
               <Reveal>
-                <SectionLabel>Where your files live</SectionLabel>
+                <SectionLabel>05 / Yours, by design</SectionLabel>
               </Reveal>
               <Reveal delay={60}>
-                <h2 className="mt-3 text-3xl font-bold tracking-tight">
+                <h2 className="mt-3 text-3xl font-bold tracking-normal">
                   A backup tool shouldn&apos;t become another place your data
                   leaks from.
                 </h2>
@@ -415,7 +274,7 @@ function Landing() {
                 </p>
               </Reveal>
               <Reveal delay={180}>
-                <div className="mt-6 flex items-center gap-3 rounded-xl border border-primary/30 bg-primary/5 p-4">
+                <div className="mt-6 flex items-center gap-3 rounded-lg border border-primary/30 bg-primary/5 p-4">
                   <ShieldCheck
                     className="h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true"
@@ -445,9 +304,9 @@ function Landing() {
                 ].map((r) => (
                   <li
                     key={r.t}
-                    className="rounded-xl border border-border bg-card p-5"
+                    className="rounded-lg border border-border bg-card p-5"
                   >
-                    <p className="font-display text-sm text-primary">{r.t}</p>
+                    <p className="text-sm font-semibold text-primary">{r.t}</p>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                       {r.b}
                     </p>
@@ -463,11 +322,11 @@ function Landing() {
           <div className="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-[1.15fr_0.85fr] md:items-center">
             <div>
               <Reveal>
-                <SectionLabel>About the developer</SectionLabel>
+                <SectionLabel>06 / A person, not a studio</SectionLabel>
               </Reveal>
               <Reveal delay={60}>
-                <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight">
-                  Built by one Bedrock player who wanted backups to feel dependable.
+                <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-normal">
+                  Built by a player. For the world you’ve built.
                 </h2>
               </Reveal>
               <Reveal delay={120}>
@@ -481,7 +340,7 @@ function Landing() {
             </div>
             <Reveal delay={140}>
               <div className="border-l-2 border-primary bg-surface-2 p-6">
-                <p className="font-display text-xs uppercase text-primary">Built with</p>
+                <p className="text-xs font-semibold uppercase text-primary">Built with</p>
                 <ul className="mt-5 space-y-5">
                   <li className="flex gap-4">
                     <span className="grid h-10 w-10 shrink-0 place-items-center bg-secondary text-primary">
@@ -515,8 +374,8 @@ function Landing() {
         <section id="support" className="pixel-grid border-b border-border py-24">
           <div className="mx-auto max-w-6xl px-5">
             <Reveal>
-              <SectionLabel>Contact & support</SectionLabel>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight">Talk directly to the developer.</h2>
+              <SectionLabel>07 / An open conversation</SectionLabel>
+              <h2 className="mt-3 text-3xl font-bold tracking-normal">Talk directly to the developer.</h2>
               <p className="mt-4 text-sm text-muted-foreground">
                 Questions, bug reports, or feature requests — reach out directly.
               </p>
@@ -532,7 +391,7 @@ function Landing() {
                     href={contact.href}
                     target={contact.external ? "_blank" : undefined}
                     rel={contact.external ? "noreferrer" : undefined}
-                    className="group flex h-full items-center gap-4 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/50 hover:bg-secondary"
+                    className="group flex h-full items-center gap-4 rounded-lg border border-border bg-card p-5 transition-colors hover:border-primary/50 hover:bg-secondary"
                   >
                     <span className="grid h-11 w-11 shrink-0 place-items-center bg-secondary text-primary group-hover:bg-primary group-hover:text-primary-foreground">
                       <contact.icon className="h-5 w-5" aria-hidden="true" />
@@ -549,14 +408,28 @@ function Landing() {
           </div>
         </section>
 
+        <section className="border-b border-border py-20">
+          <div className="mx-auto grid max-w-6xl gap-8 px-5 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
+            <Reveal><SectionLabel>The small print, made simple</SectionLabel><h2 className="mt-4 text-3xl font-semibold">Good questions.<br />Straight answers.</h2><p className="mt-4 text-sm text-muted-foreground">Anything else? <a href="#support" className="text-primary underline underline-offset-4">Ask the developer.</a></p></Reveal>
+            <Reveal delay={100}><Accordion type="single" collapsible>
+              {[
+                {q:"Do I need a Google account?",a:"Not for local backups. You only need to sign in with Google if you choose to save backups to your own Google Drive."},
+                {q:"Where do my cloud backups go?",a:"Into a WorldVault folder in your own Google Drive. You control that folder and can delete your files whenever you want. WorldVault stores backup metadata, not the contents of your worlds."},
+                {q:"Can I move a world to a new phone?",a:"Yes. Export a local .mcworld file or use your saved Google Drive backup, then restore it on your new device."},
+                {q:"Is there a subscription?",a:"No. WorldVault is free and has no ads. Cloud backups use your own Google Drive space, so the available storage depends on your Google account."},
+              ].map((f,i)=><AccordionItem key={f.q} value={String(i)}><AccordionTrigger className="py-6 text-sm">{f.q}</AccordionTrigger><AccordionContent className="pr-8 text-sm leading-relaxed text-muted-foreground">{f.a}</AccordionContent></AccordionItem>)}
+            </Accordion></Reveal>
+          </div>
+        </section>
+
         {/* DOWNLOAD */}
         <section id="download" className="relative overflow-hidden py-28">
           <div className="relative mx-auto max-w-3xl px-5 text-center">
             <Reveal className="flex justify-center">
-              <Creature variant="pebble" delay={0.2} />
+              <div className="flex items-end gap-6"><Creature variant="sprout" delay={0.2} /><img src="/worldvault-mark.png" alt="WorldVault app icon" width={72} height={72} className="h-18 w-18 rounded-lg" /><Creature variant="pebble" delay={0.6} /></div>
             </Reveal>
             <Reveal delay={80}>
-              <h2 className="mt-6 text-3xl font-bold tracking-tight md:text-4xl">
+              <h2 className="mt-6 text-3xl font-bold tracking-normal md:text-4xl">
                 Back up your worlds before you need to.
               </h2>
             </Reveal>
@@ -568,14 +441,7 @@ function Landing() {
               </p>
             </Reveal>
             <Reveal delay={200}>
-              <a
-                href="/worldvault.apk"
-                download="WorldVault.apk"
-                className="press mt-8 inline-flex items-center gap-2 rounded-xl bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground shadow-glow hover:bg-primary/90"
-              >
-                <Download className="h-4 w-4" aria-hidden="true" />
-                Download for Android
-              </a>
+              <Button asChild size="lg" className="press mt-8 h-12 px-7 font-semibold"><a href="/worldvault.apk" download="WorldVault.apk"><Download aria-hidden="true" />Download for Android<ArrowUpRight /></a></Button>
             </Reveal>
             <Reveal delay={260}>
               <p className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
