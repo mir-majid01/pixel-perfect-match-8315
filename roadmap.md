@@ -7,6 +7,6 @@
 - [x] Add and link a complete Privacy Policy page
 - [x] Verify desktop and mobile presentation
 
-- [ ] Refine the landing page with a crafted visual hierarchy, world imagery, and varied detailed layouts
-- [ ] Add purposeful motion and an interactive app showcase
-- [ ] Verify presentation, interactions, logo, and downloads
+- [x] Refine the landing page with a crafted visual hierarchy, world imagery, and varied detailed layouts
+- [x] Add purposeful motion and an interactive app showcase
+- [x] Verify presentation, interactions, logo, and downloads
